@@ -1,0 +1,5 @@
+name = "Mercury Resources"
+description = "Module to implement custom functionalities for mercuryclub.lk"
+package = "Mercury"
+core = 7.x
+

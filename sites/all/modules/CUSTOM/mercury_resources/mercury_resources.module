@@ -1,0 +1,73 @@
+<?php
+
+
+/**
+ * Getting the News Highlight post for the front page
+ *
+ * 
+ * @return 
+ *   A result set of the targeted post.
+ */
+ 
+function Mercury_resources_get_seat_reservation(){
+  global $language ;
+  $curlang = $language->language;
+
+  $seatDetails = db_query("SELECT booking.`name`,
+							booking.contact,
+							booking.email,
+							booking.date_time,
+							booking.wplace,
+							booking.message,
+							COUNT(seats.seat_id) AS SEAT_COUNT,
+							SUM(seats.price) AS TOTAL_PRICE,
+							seats.`status`,
+							booking.bookid FROM {seat_booking} 
+							INNER JOIN seats ON seat_booking.seat_no = seats.seat_id
+							INNER JOIN booking ON seat_booking.book_no = booking.bookid
+							GROUP BY bookid")->fetchAll();
+  
+  return $seatDetails;  
+}
+function Mercury_resources_get_seat_nos($id){
+  global $language ;
+  $curlang = $language->language;
+
+  $seats = db_query("SELECT seats.seat_id FROM {seat_booking} 
+					INNER JOIN seats ON seat_booking.seat_no = seats.seat_id
+					INNER JOIN booking ON seat_booking.book_no = booking.bookid 
+					WHERE booking.bookid = '$id'")->fetchAll();
+	
+  return $seats;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// get webarchive_images 
+function army_resources_get_webarchive_images($id){
+  global $language ;
+  $curlang = $language->language;
+  if($curlang == "en"){
+  $images = db_query("SELECT image_name FROM {files_webarchive} WHERE article_id = :id ",array(':id'=>$id))->fetchAll();
+  }
+  if($curlang == "si"){
+    $images = db_query("SELECT image_name FROM {files_webarchive} WHERE article_id = :id",array(':id'=>$id))->fetchAll();
+  }
+  return $images;  
+}
+

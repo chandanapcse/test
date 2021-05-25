@@ -1,0 +1,11 @@
+{
+    "require": {
+        "roomify/bat": "dev-master",
+        "php": ">=5.3.0"
+    },
+    "config": {
+        "autoloader-suffix": "ComposerManager",
+        "vendor-dir": "F:\\xampp\\htdocs\\avasta/sites/all/vendor"
+    },
+    "prefer-stable": true
+}

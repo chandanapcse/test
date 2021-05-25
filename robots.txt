@@ -1,0 +1,13 @@
+User-agent: *
+Crawl-delay: 3
+
+User-agent: *
+Disallow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Slurp
+Allow: /
+User-Agent: msnbot
+Disallow: 
+
+Sitemap: https://avastaresort.com/sitemap.xml
